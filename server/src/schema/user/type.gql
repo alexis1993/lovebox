@@ -1,0 +1,11 @@
+type User {
+  email: EmailAddress!
+  password: String!
+  joinDate: String
+}
+
+extend type Query {
+  users: [User]
+  user(email: EmailAddress!): User
+  me: User
+}
