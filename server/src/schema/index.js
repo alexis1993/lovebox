@@ -3,6 +3,8 @@ import { gql } from 'apollo-server';
 import { UserResolvers } from './user';
 import { EmailAddressResolver } from 'graphql-scalars';
 import UserType from './user/type.gql';
+import MessageType from './message/type.gql';
+import { MessageResolvers } from './message';
 
 const Types = gql`
   scalar EmailAddress
@@ -13,5 +15,5 @@ const Types = gql`
     _empty: String
   }
 `;
-export const typeDefs = [Types, gql`${UserType}`];
-export const resolvers = merge({ EmailAddress: EmailAddressResolver }, UserResolvers);
+export const typeDefs = [Types, gql`${UserType}`,gql`${MessageType}` ];
+export const resolvers = MessageResolvers;

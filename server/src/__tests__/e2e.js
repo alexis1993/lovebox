@@ -3,18 +3,24 @@ const { createTestClient } = require('apollo-server-testing');
 const { ApolloServer, schema } = require('../server');
 
 const server = new ApolloServer({ ...schema });
-const GET_USERS = gql`query {
-  users {
-    email
-    role {
-      name
-    }
+const GET_MESSAGES = gql`query {
+  messages {
+    uri
   }
 }`
-describe('Test Server, no context', () => {
-  it('Users whit out credentials', async () => {
+const ADD_MESSAGES = gql`mutation AddMessage($uri: String!) {
+  addMessage(uri: $uri) {
+    uri
+  }
+}`
+describe('Test messages', () => {
+  it('Add Messages', async () => {
     const { query } = createTestClient(server);
-    const res = await query({ query: GET_USERS });
-    expect(res).toMatchSnapshot();
+    const messagesBeforeAdd = await query({ query: GET_MESSAGES });
+    await query({mutation:ADD_MESSAGES,'variables' : {
+      'uri': "test"
+    }})
+    const messagesAfterAdd = await query({ query: GET_MESSAGES });
+    expect(messagesAfterAdd.data.messages.length - messagesBeforeAdd.data.messages.length).toEqual(1);
   });
 });

@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     // Initialize Apollo Client
     const apolloClient = new ApolloClient({
-      uri: 'http://localhost:4000',
+      uri: 'http://192.168.1.10:4000',
       cache: new InMemoryCache()
     });
     setClient(apolloClient);

@@ -7,6 +7,13 @@
   "errors": {
     "invalidEmail": "Invalid email address."
   },
+  "message": {
+    "send": "Send messages",
+    "list": "List messages",
+    "sendBtn": "Send",
+    "noMessages": "There is no messages",
+    "textImage": "Text to apply on image"
+  },
   "welcomeScreen": {
     "poweredBy": "POWERED BY IGNITE",
     "readyForLaunch": "Ready for launch.",

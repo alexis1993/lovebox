@@ -1,0 +1,15 @@
+type Message {
+  uri:String
+}
+
+type AddMessageResult {
+  uri:String
+}
+
+extend type Query {
+  messages: [Message]
+}
+
+extend type Mutation {
+  addMessage (uri: String): AddMessageResult!
+}
